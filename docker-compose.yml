@@ -1,0 +1,20 @@
+services:
+    api:
+      container_name: officesback
+      restart: always
+      build: .
+      ports:
+        - "3010:3000"
+      links:
+        - mongo
+      volumes:
+        - .:/Documents/cleanCode/officesLoginBack
+    mongo:
+      container_name: mongoofficesdb
+      image: mongo
+      ports:
+        - "3020:27017"
+      logging:
+        driver: none
+      volumes:
+        - ./database:/data/db
